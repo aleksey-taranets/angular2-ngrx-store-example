@@ -1,0 +1,9 @@
+<md-list>
+  <md-list-item *ngFor="let user of (users | async)?.users">
+    <img md-list-avatar [src]="user.avatar_url" alt="">
+    <h3 md-line> {{ user.name }} </h3>
+    <p md-line>
+      <span> <a routerLink="/users/{{ user.login }}">{{user.login}}</a> </span>
+    </p>
+  </md-list-item>
+</md-list>

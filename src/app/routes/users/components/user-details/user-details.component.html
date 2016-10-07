@@ -1,0 +1,21 @@
+<div *ngIf="user.name">
+    <md-card>
+        <md-card-title-group>
+            <img md-card-sm-image [src]="user.avatar_url">
+            <md-card-title>{{ user.name }}</md-card-title>
+            <md-card-subtitle><a [href]="user.html_url">@{{ user.login }}</a></md-card-subtitle>
+        </md-card-title-group>
+        <md-card-content>
+            <dl>
+                <dt>Email</dt><dd>{{user.email}}</dd>
+                <dt>Company</dt><dd>{{user.company}}</dd>
+                <dt>Location</dt><dd>{{user.location}}</dd>
+                <dt>Followers</dt><dd>{{user.followers}}</dd>
+                <dt>Public Gists</dt><dd>{{user.public_gists}}</dd>
+                <dt>Public Repositories</dt><dd>{{user.public_repos}}</dd>
+                <dt>Blog</dt><dd>{{user.blog}}</dd>
+                <dt>Bio</dt><dd>{{user.bio}}</dd>
+            </dl>
+        </md-card-content>
+    </md-card>
+</div>
