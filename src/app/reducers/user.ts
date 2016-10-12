@@ -12,6 +12,7 @@ const initialState: UserState = {
   repos: 0,
   followers: 0,
   loading: false,
+  repositories: []
 };
 
 export default function (state = initialState, action: Action): UserState {
@@ -20,7 +21,10 @@ export default function (state = initialState, action: Action): UserState {
       return { loading: true };
     }
     case UsersActions.SET_USER: {
-      return _.assign({}, { loading: false } , action.payload);
+      return _.assign({}, state, action.payload.user, {
+        loading: false,
+        repositories: _.sortBy(action.payload.repos, r => -r['stargazers_count'])
+      });
     }
     default: {
       return state;

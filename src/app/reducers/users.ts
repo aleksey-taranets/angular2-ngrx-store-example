@@ -10,7 +10,9 @@ const initialState: UsersState = {
   users: [],
   loading: false,
   filter: {
-    name: '',
+    'in': '',
+    language: '',
+    location: '',
     repos: 0,
     followers: 1000
   }
@@ -23,6 +25,11 @@ export default function (state = initialState, action: Action): UsersState {
     }
     case UsersActions.SET_USERS: {
       return _.assign({}, state, { loading: false, users: action.payload });
+    }
+    case UsersActions.SET_FILTER: {
+      return _.assign({}, state, {
+        filter: _.assign({}, state.filter, action.payload)
+      });
     }
     default: {
       return state;

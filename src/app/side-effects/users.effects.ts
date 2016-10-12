@@ -6,6 +6,7 @@ import 'rxjs/add/operator/switchMap';
 import { AppState, getState } from '../reducers';
 import { UsersActions } from '../actions';
 import { ApiService } from '../services';
+import { Observable } from "rxjs";
 
 @Injectable()
 export class UsersEffects {
@@ -24,10 +25,28 @@ export class UsersEffects {
     })
     .map(users => this.usersActions.setUsers(users));
 
+  @Effect() setFilter$ = this.update$
+    .ofType(UsersActions.SET_FILTER)
+    .switchMap(() => {
+      const currentFilter = getState(this.store).users.filter;
+      return this.api.loadUsers(currentFilter);
+    })
+    .map(users => this.usersActions.setUsers(users));
+
   @Effect() loadUser$ = this.update$
     .ofType(UsersActions.LOAD_USER)
     .map(action => action.payload)
-    .switchMap(userId => this.api.loadUser(userId))
-    .map(user => this.usersActions.setUser(user));
+    .switchMap(userId => {
+      return Observable.forkJoin(
+        this.api.loadUser(userId),
+        this.api.loadUserRepos(userId)
+      );
+    })
+    .map((userData) => {
+      return this.usersActions.setUser({
+        user: userData[0],
+        repos: userData[1]
+      });
+    });
 
 }

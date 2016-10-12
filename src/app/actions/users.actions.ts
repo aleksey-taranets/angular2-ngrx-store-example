@@ -33,4 +33,19 @@ export class UsersActions {
       payload: user
     };
   }
+
+  static SET_FILTER = '@users/SET_FILTER';
+  setFilter(filter): Action {
+    return {
+      type: UsersActions.SET_FILTER,
+      payload: filter
+    };
+  }
+
+  static RESET_FILTER = '@users/RESET_FILTER';
+  resetFilter(): Action {
+    return {
+      type: UsersActions.RESET_FILTER,
+    };
+  }
 }

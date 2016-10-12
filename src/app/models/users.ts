@@ -1,3 +1,7 @@
+export interface UserRepos {
+  name: string;
+}
+
 export interface User {
   login?: string;
   name?: string;
@@ -14,11 +18,14 @@ export interface User {
   company?: string;
   email?: string;
   loading: boolean;
+  repositories?: UserRepos[];
 }
 
 export interface UsersFilter {
-  name: string,
-  repos: number,
+  'in': string;
+  location: string;
+  language: string;
+  repos: number;
   followers: number;
 }
 

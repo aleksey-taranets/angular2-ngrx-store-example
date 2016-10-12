@@ -1,0 +1,42 @@
+<form (ngSubmit)="onSubmit()">
+    <fieldset>
+        <input name="in" [(ngModel)]="filter['in']">
+        <select [(ngModel)]="filter.language" name="language">
+            <option value="">Choose the language</option>
+            <option value="javascript">JavaScript</option>
+            <option value="php">PHP</option>
+            <option value="java">Java</option>
+            <option value="python">Python</option>
+            <option value="css">CSS</option>
+        </select>
+        <select [(ngModel)]="filter.location" name="location">
+            <option value="">Choose the location</option>
+            <option value="usa">USA</option>
+            <option value="ukraine">Ukraine</option>
+            <option value="german">German</option>
+            <option value="russia">Russia</option>
+            <option value="canada">Canada</option>
+        </select>
+        <select [(ngModel)]="filter.repos" name="repos">
+            <option value="0">Choose the repositories quantity</option>
+            <option value="1">1</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="100">100</option>
+            <option value="500">500</option>
+        </select>
+        <select [(ngModel)]="filter.followers" name="followers">
+            <option value="0">Choose the followers quantity</option>
+            <option value="1">1</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="100">100</option>
+            <option value="500">500</option>
+            <option value="1000">1000</option>
+            <option value="5000">5000</option>
+            <option value="20000">20000</option>
+            <option value="50000">50000</option>
+        </select>
+        <button type="submit">Filter</button>
+    </fieldset>
+</form>

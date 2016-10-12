@@ -6,6 +6,7 @@
             <md-card-subtitle><a [href]="user.html_url">@{{ user.login }}</a></md-card-subtitle>
         </md-card-title-group>
         <md-card-content>
+            <h2>Details</h2>
             <dl>
                 <dt>Email</dt><dd>{{user.email}}</dd>
                 <dt>Company</dt><dd>{{user.company}}</dd>
@@ -16,6 +17,12 @@
                 <dt>Blog</dt><dd>{{user.blog}}</dd>
                 <dt>Bio</dt><dd>{{user.bio}}</dd>
             </dl>
+            <h2>Repositories</h2>
+            <ul *ngIf="user.repositories.length">
+                <li *ngFor="let repo of user.repositories">
+                    <a [href]="repo.html_url"><strong>{{repo.name}}</strong></a> --- {{repo.language}} --- {{repo.stargazers_count}}
+                </li>
+            </ul>
         </md-card-content>
     </md-card>
 </div>
